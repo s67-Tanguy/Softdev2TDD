@@ -23,3 +23,8 @@ class HomePageTest(TestCase):
         response = self.client.get('/')
         self.assertContains(response, 'itemey 1')
         self.assertContains(response, 'itemey 2')
+
+class AboutPageTest(TestCase):
+    def test_about_page(self):
+        response = self.client.get('/about')
+        self.assertTemplateUsed(response, 'about.html')

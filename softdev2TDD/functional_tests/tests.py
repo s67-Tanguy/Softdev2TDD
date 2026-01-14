@@ -42,3 +42,11 @@ class NewVisitorTest(LiveServerTestCase):
 
         self.wait_for_row_in_list_table('1: Buy peacock feathers')
         self.wait_for_row_in_list_table('2: Use peacock feathers to make a fly')
+        # Edith sees the 'About Me' link at the bottom and clicks it
+        about_link = self.browser.find_element(By.ID, 'id_about_link')
+        about_link.click()
+
+        # She notices the URL changes and the page says 'About Me'
+        self.assertIn('/about', self.browser.current_url)
+        header_text = self.browser.find_element(By.TAG_NAME, 'h1').text
+        self.assertIn('About Me', header_text)
